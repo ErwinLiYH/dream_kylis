@@ -23,4 +23,24 @@
     <i class="large link search icon"></i>
   </a>
   {{ end }}
+  <div class="right menu"> <!-- 将下拉菜单推到右侧 -->
+    <a class="item">
+      <i class="large link lang icon", id="lang_switcher"></i>
+      <script>
+        // 获取图标元素
+        var iconElement = document.getElementById("lang_switcher");
+        var current_lang = {{ .Site.Language.Lang }};
+        var base = {{ .Site.BaseURL }}
+        // 添加点击事件处理程序
+        iconElement.addEventListener("click", function() {
+          // 在点击时导航到其他 URL
+          if (current_lang=="zh") {
+            window.location.href = base+"/en";
+          } else {
+            window.location.href = base+"/zh"
+          }
+        });
+      </script>
+    </a>
+  </div>
 </nav>
