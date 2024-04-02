@@ -1,4 +1,7 @@
 $(document).ready(() => {
+  let isDark = localStore.getItem('hugo-theme-dream-is-dark')
+  isDark = isDark ? isDark : window.defaultDark ? 'y' : isDark
+
   function setClassName() {
     return (
       window.backgroundDark || window.backgroundImageDark
@@ -21,23 +24,12 @@ $(document).ready(() => {
 
   if (window.fixedNav) {
     const nav = $('.dream-nav')
-
-    osInstance.options('callbacks.onScroll', function () {
-      const y = this.scroll().position.y
-      const fake = $('.fake-dream-nav')
-
-      if (y > 0) {
-        nav.addClass('fixed').css('background', window.isDark === 'y' ? window.backgroundDark : window.background)
-        $('.dream-single-aside').css('top', 54)
-        if (!fake.length) {
-          $('<div class="fake-dream-nav" />').css('height', 54).insertBefore(nav)
-        }
-      } else {
-        nav.removeClass('fixed').css('background', 'unset')
-        $('.dream-single-aside').css('top', 0)
-        fake.remove()
+    const fake = $('.fake-dream-nav')
+      nav.addClass('fixed').css('background', isDark === 'y' ? window.backgroundDark : window.background)
+      $('.dream-single-aside').css('top', 54)
+      if (!fake.length) {
+        $('<div class="fake-dream-nav" />').css('height', 54).insertBefore(nav)
       }
-    })
   }
 
   window.overlayScrollbarsInstance = osInstance

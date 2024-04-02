@@ -29,8 +29,8 @@ const darkNavMenu = () => {
   }
 
   const osInstance = window.overlayScrollbarsInstance
-  if (window.fixedNav && osInstance && osInstance.scroll().position.y > 0) {
-    $('.dream-nav').css('background', window.isDark === 'y' ? window.backgroundDark : window.background)
+  if (window.fixedNav && osInstance) {
+    $('.dream-nav').css('background', isDark === 'y' ? window.backgroundDark : window.background)
   }
 }
 
